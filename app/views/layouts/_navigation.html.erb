@@ -24,12 +24,23 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
-          <li class="nav-item">
-            <%= link_to "Log in", login_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Logout", logout_path, class: "nav-link", method: :delete %>
-          </li>
+
+          <% if logged_in?%>
+            <li class="nav-item">
+              <%= link_to "Welcome "+ current_user.username, user_path(current_user), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Logout", logout_path, class: "btn btn-outline-warning", method: :delete %>
+            </li>
+
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Log in", login_path, class: "btn btn-outline-success" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign up", signup_path, class: "btn btn-outline-success ml-2" %>
+            </li>
+          <% end %>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

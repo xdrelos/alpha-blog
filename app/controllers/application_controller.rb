@@ -11,4 +11,12 @@ class ApplicationController < ActionController::Base
     # !! turns into boolean
     !!current_user
   end
+
+  def require_user
+    if !logged_in?
+      flash[:alert] = "You must be logged in to access this section."
+      redirect_to login_path
+    end
+  end
+
 end

@@ -17,6 +17,27 @@
           <%= f.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description of the article" %>
         </div>
       </div>
+      <!--list can be selected -->
+      <div class="form-group row">
+        <%= f.label :category, class: "col-2 col-form-label text-light" %>
+        <div class="col-10">
+          <%= f.collection_select(:category_ids, Category.all,:id,:name,
+                                  {prompt: "Make your selection"},{multiple: true,size: 5, class:"custom-select shadow rounded"}) %>
+        </div>
+      </div>
+      <!--checkboxes 
+      <div class="form-group row">
+          <div class="col-2 text-white">
+            Categories
+          </div>
+          <div class="col-sm-10 col-sm-offset-2">
+            <ul class="list-group">
+            <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+              <li class="list-group-item"><%= cb.label(class: "checkbox-inline input_checkbox ") {cb.check_box(class: "checkbox") + cb.text } %></li>
+            <% end %>
+            </ul>
+          </div>
+      </div>-->
       <div class="form-group row justify-content-center">
         <%= f.submit class:"btn btn-outline-light btn-lg" %>
       </div>
